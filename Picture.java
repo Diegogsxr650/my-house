@@ -88,12 +88,27 @@ public class Picture
         moon.changeSize(60);    
     
     }
+
     private void wait(int miliseconds)
     {
         try {
             Thread.sleep(miliseconds);
         } catch (InterruptedException e) {
         }
+    }
+    public void amanecer()
+    
+    {
+        for (int i = 0; i <250; i++){
+            sun.moveVertical(-1);
+            moon.makeInvisible();
+            moon.changeColor("magenta");
+            moon.moveHorizontal(80);
+            moon.moveVertical(-20);
+            moon.changeSize(60); 
+        }
+    
+       
     }
     /**
      * Change this picture to black/white display
