@@ -17,6 +17,8 @@ public class Picture
     private Circle sun;
     private Circle moon;
     private Square field;
+    private Person person;
+    private Person person2;
     /**
      * Constructor for objects of class Picture
      */
@@ -35,7 +37,7 @@ public class Picture
         wall.moveVertical(20);
         wall.changeSize(120);
         wall.makeVisible();
-        
+
         window = new Square();
         window.changeColor("black");
         window.moveHorizontal(-120);
@@ -55,15 +57,13 @@ public class Picture
         sun.moveVertical(-40);
         sun.changeSize(80);
         sun.makeVisible();
-        
-        
+
         moon = new Circle();
         moon.changeColor("magenta");
         moon.moveHorizontal(100);
         moon.moveVertical(-60);
         moon.changeSize(35);
-        
-        
+
         field = new Square();
         field.makeVisible();
         field.changeColor("green");
@@ -71,22 +71,33 @@ public class Picture
         field.changeSize(2000);
         field.moveHorizontal(-400);
 
+        person = new Person();
+        person.moveHorizontal(-200);
+        person.moveVertical(20);
+
+        
+        person2 = new Person();
+        person2.moveHorizontal(200);
+        person2.moveVertical(20);
+
         simulateSunset();
     }
-    
+
     public void simulateSunset()
-    
+
     {
         for (int i = 0; i <250; i++){
-            sun.moveVertical(1);
+            sun.slowMoveVertical(1);
         }
-    
+
         moon.makeVisible();
         moon.changeColor("magenta");
         moon.moveHorizontal(80);
         moon.moveVertical(-20);
-        moon.changeSize(60);    
-    
+        moon.changeSize(60); 
+        person.makeInvisible();
+        person2.makeInvisible();
+
     }
 
     private void wait(int miliseconds)
@@ -96,25 +107,27 @@ public class Picture
         } catch (InterruptedException e) {
         }
     }
+
     public void amanecer()
-    
     {
-        for (int i = 0; i <250; i++){
-            sun.moveVertical(-1);
-            moon.makeInvisible();
-            moon.changeColor("magenta");
-            moon.moveHorizontal(80);
-            moon.moveVertical(-20);
-            moon.changeSize(60); 
-        }
-    
-       
+       for (int i = 0; i < 280; i++){
+        sun.makeVisible();
+        sun.slowMoveVertical(-1);
+        moon.makeInvisible();
+        
+    }
+        person.makeVisible(); 
+        person.slowMoveHorizontal(80); 
+
+        person2.makeVisible();
+        person2.slowMoveHorizontal(-160);
+        
     }
     /**
      * Change this picture to black/white display
      */
-    public void setBlackAndWhite()
-    {
+    public void setBlackAndWhite(){
+    
         if (wall != null)   // only if it's painted already...
         {
             wall.changeColor("black");
